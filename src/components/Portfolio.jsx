@@ -33,8 +33,6 @@ const Portfolio = () => {
     return () => clearInterval(typingInterval);
   }, []);
 
-
-
   return (
     <>
     <CustomCursor />
