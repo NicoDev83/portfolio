@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  cursor: none; /* Cache le curseur par défaut */
+}
+
+.custom-cursor {
+  width: 12px;
+  height: 12px;
+  background-color: #00ff88;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference; /* Pour assurer la visibilité sur tous les fonds */
+  box-shadow: 
+    2px 2px 0 0 #00ff88,
+    -2px -2px 0 0 #00ff88,
+    2px -2px 0 0 #00ff88,
+    -2px 2px 0 0 #00ff88;
+}
+
+.typing-text {
+  font-family: 'Press Start 2P', cursive;
+  color: #00ff88;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0.5rem 0;
+  max-width: 800px;
+  text-align: center;
+  min-height: 3em;
+}
+
+.cursor {
+  animation: blink 1s step-end infinite;
+  font-weight: bold;
+}
+
+@keyframes blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.portfolio-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1a1a1a;
+  position: relative;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  z-index: 2;
+}
+
+.center-content {
+  z-index: 2;
+}
+
+.profile-image {
+  width: 200px;
+  height: 200px;
+  border-bottom-right-radius: 30%;
+  border-bottom-left-radius: 25%;
+}
+
+.social-links-container {
+  display: flex;
+  gap: 4rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 600px;
+}
+
+.social-link {
+  text-decoration: none;
+  color: #00ff88;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(20px) scale(0.5);
+  transition: all 0.3s ease; /* Changé pour inclure tous les effets */
+  padding: 10px 20px; /* Ajoute de l'espace autour du contenu */
+  border-radius: 15px; /* Coins arrondis */
+  position: relative; /* Pour le pseudo-élément */
+  cursor: none;
+}
+
+.social-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.1); /* Fond blanc semi-transparent */
+  border-radius: 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1; /* Place le fond derrière le contenu */
+}
+
+.social-link:hover {
+  transform: scale(1.1);
+}
+
+.social-link:hover::before {
+  opacity: 1;
+}
+
+/* Ajustez aussi l'effet sur le texte et l'icône au survol */
+.social-link:hover .name {
+  color: #fde055;
+}
+
+.social-link:hover .icon-image {
+  filter: invert(89%) sepia(61%) saturate(1095%) hue-rotate(319deg) brightness(103%) contrast(94%);
+  box-shadow: 0 0 10px rgba(253, 224, 85, 0.5); /* Change l'icône en blanc */
+}
+
+.social-link.appear {
+  animation: appearFromBottom 3s var(--delay) forwards;
+}
+
+.icon-image {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-bottom: 5px;
+  filter: invert(62%) sepia(98%) saturate(1276%) hue-rotate(100deg) brightness(119%) contrast(119%);
+}
+
+.name {
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+@keyframes appearFromBottom {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(20px) scale(0.5);
+  }
+  20% {
+    opacity: 0.3;
+    filter: blur(5px);
+    transform: translateY(15px) scale(0.8);
+  }
+  40% {
+    opacity: 0.5;
+    filter: blur(15px);
+    transform: translateY(10px) scale(0.9);
+  }
+  60% {
+    opacity: 0.7;
+    filter: blur(2px);
+    transform: translateY(5px) scale(0.95);
+  }
+  80% {
+    opacity: 0.9;
+    filter: blur(8px);
+    transform: translateY(2px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+}
